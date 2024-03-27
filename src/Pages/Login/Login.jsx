@@ -1,10 +1,29 @@
 import { Link } from 'react-router-dom';
 import loginImg from '../../assets/images/login/login.svg';
+import { useContext } from 'react';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Login = () => {
+    const { signIn } = useContext(AuthContext)
 
-    const handleLogin = (e) => {
+    const handleLogin = async(e) => {
         e.preventDefault()
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.current_password.value;
+
+        console.log(email,password)
+
+        try {
+            // Use await to wait for signIn to complete
+            await signIn(email, password);
+            // If signIn succeeds, show success alert
+            alert("Success");
+        } catch (err) {
+            // If signIn fails, show error alert
+            alert(err.message);
+        }
+
     }
 
     return (
@@ -27,7 +46,7 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" placeholder="password" className="input input-bordered" name="password" required />
+                                <input type="password" placeholder="password" className="input input-bordered" name="current_password" required />
                                 {/* <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label> */}

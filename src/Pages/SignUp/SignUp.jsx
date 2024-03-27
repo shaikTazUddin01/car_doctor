@@ -1,9 +1,28 @@
 import { Link } from 'react-router-dom';
 import loginImg from '../../assets/images/login/login.svg';
+import { useContext } from 'react';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const SignUp = () => {
+
+    const { signup } = useContext(AuthContext)
+
     const handleSignUp = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        signup(email, password)
+            .then(user => {
+                alert("success")
+            })
+            .catch(err => {
+                alert(err)
+            })
+        // console.log(name,email,password)
+
     }
 
     return (
@@ -20,7 +39,7 @@ const SignUp = () => {
                                 <label className="label">
                                     <span className="label-text">Full Name</span>
                                 </label>
-                                <input type="email" placeholder="email" className="input input-bordered" name='name' required />
+                                <input type="text" placeholder="email" className="input input-bordered" name='name' required />
                             </div>
                             <div className="form-control">
                                 <label className="label">

@@ -1,7 +1,22 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../../assets/logo.svg'
+import { useContext } from 'react';
+import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Navbar = () => {
+    const{logOut}=useContext(AuthContext)
+
+    const handleSignOut= async()=>{
+        try{
+
+           await logOut()
+            alert("log out")
+    }catch (err) {
+            // If signIn fails, show error alert
+            alert(err.message);
+        }
+        
+    }
  
     const navItem=<>
     <li><NavLink to={'/'}>Home</NavLink></li>
@@ -9,6 +24,7 @@ const Navbar = () => {
     <li><NavLink to={'/login'}>Login</NavLink></li>
     <li><NavLink to={'/blog'}>Blog</NavLink></li>
     <li><NavLink to={'/contact'}>Contact</NavLink></li>
+    <li onClick={handleSignOut}><Link>log Out</Link></li>
     </>
 
 
