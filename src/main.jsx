@@ -6,6 +6,8 @@ import { RouterProvider } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <div className='bg-base-200'>
     <RouterProvider router={Router}></RouterProvider>
+    </div>
   </React.StrictMode>,
 )
