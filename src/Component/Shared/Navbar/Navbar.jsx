@@ -4,27 +4,32 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Navbar = () => {
-    const{logOut}=useContext(AuthContext)
+    const { logOut, user } = useContext(AuthContext)
 
-    const handleSignOut= async()=>{
-        try{
+    const handleSignOut = async () => {
+        try {
 
-           await logOut()
+            await logOut()
             alert("log out")
-    }catch (err) {
+
+        } catch (err) {
             // If signIn fails, show error alert
             alert(err.message);
         }
-        
+
     }
- 
-    const navItem=<>
-    <li><NavLink to={'/'}>Home</NavLink></li>
-    <li><NavLink to={'/about'}>About</NavLink></li>
-    <li><NavLink to={'/login'}>Login</NavLink></li>
-    <li><NavLink to={'/blog'}>Blog</NavLink></li>
-    <li><NavLink to={'/contact'}>Contact</NavLink></li>
-    <li onClick={handleSignOut}><Link>log Out</Link></li>
+
+    const navItem = <>
+        <li><NavLink to={'/'}>Home</NavLink></li>
+        <li><NavLink to={'/about'}>About</NavLink></li>
+        {user?.email ?
+            <>
+                <li><NavLink to={'/booking'}>Booking</NavLink></li>
+                <li onClick={handleSignOut}><Link>log Out</Link></li>
+            </> :
+            <li><NavLink to={'/login'}>Login</NavLink></li>
+
+        }
     </>
 
 
@@ -41,7 +46,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <a className="">
-                        <img src={logo} alt="" className='h-16'/>
+                        <img src={logo} alt="" className='h-16' />
                     </a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
