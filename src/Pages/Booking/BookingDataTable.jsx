@@ -1,4 +1,5 @@
-const BookingDataTable = ({ booking }) => {
+const BookingDataTable = ({ booking ,handleDalete}) => {
+  
     return (
         <tr>
             <td>
@@ -14,8 +15,8 @@ const BookingDataTable = ({ booking }) => {
             </td>
             <td>{booking?.price}</td>
             <th className="flex gap-2 justify-center">
-                <button className="btn btn-success btn-sm">Edit</button>
-                <button className="btn btn-error btn-sm">Delete</button>
+                <button className="btn btn-success btn-sm" onClick={()=>handleEdit(booking?._id)}>Edit</button>
+                <button className="btn btn-error btn-sm" onClick={()=>handleDalete(booking?._id)}>Delete</button>
             </th>
         </tr>
 

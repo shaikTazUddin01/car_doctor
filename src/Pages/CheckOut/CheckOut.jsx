@@ -32,7 +32,7 @@ const CheckOut = () => {
         .then(data=>{
             if (data?.insertedId) {
                 alert('data inserted successfull')
-                form.reset()
+                // form.reset()
             }else{
                 alert('something is wrong please try again')
             }
