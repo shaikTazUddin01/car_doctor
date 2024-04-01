@@ -21,7 +21,7 @@ const Navbar = () => {
 
     const navItem = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
-        <li><NavLink to={'/about'}>About</NavLink></li>
+        {/* <li><NavLink to={'/about'}>About</NavLink></li> */}
         {user?.email ?
             <>
                 <li><NavLink to={'/booking'}>Booking</NavLink></li>
