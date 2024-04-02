@@ -1,7 +1,10 @@
-const BookingDataTable = ({ booking ,handleDalete}) => {
+const BookingDataTable = ({ booking ,handleDalete,handleEdit}) => {
   
     return (
         <tr>
+            <td>
+            <button className="btn btn-error btn-sm" onClick={()=>handleDalete(booking?._id)}>X</button>
+        </td>
             <td>
                 <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
@@ -15,8 +18,14 @@ const BookingDataTable = ({ booking ,handleDalete}) => {
             </td>
             <td>{booking?.price}</td>
             <th className="flex gap-2 justify-center">
-                <button className="btn btn-success btn-sm" onClick={()=>handleEdit(booking?._id)}>Edit</button>
-                <button className="btn btn-error btn-sm" onClick={()=>handleDalete(booking?._id)}>Delete</button>
+                {
+                    booking?.status=="confirmed"?
+                    <button className="btn btn-primary btn-sm" >comfirmed</button>
+                    :
+                    <button className="btn btn-success btn-sm" onClick={()=>handleEdit(booking?._id)}>Please comfirm</button>
+                }
+                
+               
             </th>
         </tr>
 
